@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Exercises</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .video-item {
+            margin: 10px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .pagination a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .pagination a.active {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Workout Exercises</h1>
+    <div id="Arms" class="video-container">
+        <h2>Arms</h2>
+        <!-- Add your video items here -->
+        <div class="video-item">
+            <video src="path_to_your_video" controls></video>
+            <img src="path_to_your_thumbnail" alt="Video thumbnail">
+        </div>
+        <!-- Add more video items as needed -->
+    </div>
+    <!-- Repeat the above div for each category (Chest, Legs, etc.) -->
+
+    <!-- Add a pagination at the bottom of each page -->
+    <div class="pagination">
+        <a href="#">«</a>
+        <a href="#">1</a>
+        <a href="#" class="active">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">»</a>
+    </div>
+</body>
+</html>

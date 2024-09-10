@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyHome Workout App</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <script>
+    // Get the current URL path
+    const currentPath = window.location.pathname;
+
+    // Find the corresponding link in the navigation and add the "active" class
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+</script>
+
+</head>
+<body>
+  <header>
+    <div class="navbar">
+  <a href="#" class="active">Home</a>
+  <a href="warm-up.html">Warm Up</a>
+  <a href="arms.html">Arms</a>
+  <a href="chest.html">Chest</a>
+  <a href="legs.html">Legs</a>
+  <div class="subnav">
+    <button class="subnavbtn">ABs <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="abs.html">ABs 1</a>
+      <a href="abs1.html">ABs 2</a>
+    </div>
+  </div>
+  <div class="subnav">
+    <button class="subnavbtn">Burn Fat <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="bfat.html">Part 1</a>
+      <a href="bfat1.html">Part 2</a>
+      <a href="bfat2.html">Part 3</a>
+    </div>
+  </div> 
+  <a href="cardio.html">Cardio</a>
+  <a href="kegel.html">Kegel</a>
+  </header>
+  <main>
+	<section id="home">
+	<h2 align="center">Choose your Workout:</h2><br />
+      <img src="img/workout.jpg" border="0" />
+    </section>
+    <section id="warm-up">
+      <h2>Warm up Exercises</h2>
+	  <p align="center"><img src="img/warm-ups.jpg" border="0" width="75%" /></p>
+      <p>This is the warm up page.</p>
+    </section>
+    <section id="arms">
+      <h2>Arm Exercises</h2>
+	  <p align="center"><img src="img/arms.jpg" border="0" width="75%" /></p>
+      <p>This is the arms page.</p>
+    </section>
+    <section id="chest">
+      <h2>Chest Exercises</h2>
+	  <p align="center"><img src="img/chest.jpg" border="0" width="75%" /></p>
+      <p>This is the chest page.</p>
+    </section>
+    <section id="abs">
+      <h2>Abs Exercises</h2>
+	  <p align="center"><img src="img/abs.jpg" border="0" width="75%" /></p>
+      <p>This is the abs page.</p>
+    </section>
+    <section id="legs">
+      <h2>Legs Exercises</h2>
+	  <p align="center"><img src="img/legs.jpg" border="0" width="75%" /></p>
+      <p>This is the legs page.</p>
+    </section>
+    <section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+	  	  <p align="center"><img src="img/burnfat.jpg" border="0" width="75%" /></p>
+      <p>This is the lose weight page.</p>
+    </section>
+  </main>
+    <div class="scroll-to-top">
+    <button onclick="window.scrollTo(0, 0)">Scroll to Top</button>
+  </div>
+  <footer>
+    <p>&copy; 2024 MyHome Workout App Made by REDi</p>
+  </footer>
+  <!-- <script src="js/vid.js"></script> -->
+</body>
+</html>

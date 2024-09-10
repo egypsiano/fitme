@@ -1,0 +1,111 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .video-item {
+            margin: 10px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .pagination a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .pagination a.active {
+            font-weight: bold;
+        }
+    </style>
+
+  <title>MyHome Workout App</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <script>
+    // Get the current URL path
+    const currentPath = window.location.pathname;
+
+    // Find the corresponding link in the navigation and add the "active" class
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+</script>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="warm-up.html">Warm Up</a>
+  <a href="arms.html">Arms</a>
+  <a href="chest.html">Chest</a>
+  <a href="legs.html" class="active">Legs</a>
+  <div class="subnav">
+    <button class="subnavbtn">ABs <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="abs.html">ABs 1</a>
+      <a href="abs1.html">ABs 2</a>
+    </div>
+  </div>
+  <div class="subnav">
+    <button class="subnavbtn">Burn Fat <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="bfat.html">Part 1</a>
+      <a href="bfat1.html">Part 2</a>
+      <a href="bfat2.html">Part 3</a>
+    </div>
+  </div> 
+  <a href="cardio.html">Cardio</a>
+  <a href="kegel.html">Kegel</a>
+  </header>
+  <main>
+	<section id="home" align="center">
+      <img src="img/legs.jpg" border="0" width="65%" />
+    </section>
+    <section id="legs">
+      <h2>Legs Exercises</h2>
+      <p>This is the warm up page.</p>
+	  <iframe width="320" height="240" src="Vid/Legs/legs.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Legs/thumb-legs.png"></iframe>
+	</section>
+    <section id="legs">
+      <h2>Legs Exercises</h2>
+      <p>This is the arms page.</p>
+	<iframe width="320" height="240" src="Vid/Legs/legs1.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Legs/thumb-legsl.png"></iframe>
+	</section>
+	<section id="legs">
+      <h2>push-pull-legs Exercises</h2>
+      <p>This is the arms page.</p>
+	<iframe width="320" height="240" src="Vid/Legs/push-pull-legs.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Legs/thumb-push-pull-legs.png"></iframe>
+	</section>
+   <div class="scroll-to-top">
+    <button onclick="window.scrollTo(0, 0)">Scroll to Top</button>
+  </div>
+<div class="pagination">
+        <a href="#">«</a>
+        <a href="#" class="active">1</a>
+        <!-- <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a> -->
+        <a href="#">»</a>
+    </div>
+
+  </main>
+  <footer>
+    <p>&copy; 2024 MyHome Workout App Made by REDi</p>
+  </footer>
+<!-- <script src="js/vid.js"></script> -->
+</body>
+</html>

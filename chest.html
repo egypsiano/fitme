@@ -1,0 +1,151 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .video-item {
+            margin: 10px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .pagination a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .pagination a.active {
+            font-weight: bold;
+        }
+    </style>
+
+  <title>MyHome Workout App</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <script>
+    // Get the current URL path
+    const currentPath = window.location.pathname;
+
+    // Find the corresponding link in the navigation and add the "active" class
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+</script>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="warm-up.html">Warm Up</a>
+  <a href="arms.html">Arms</a>
+  <a href="chest.html" class="active">Chest</a>
+  <a href="legs.html">Legs</a>
+  <div class="subnav">
+    <button class="subnavbtn">ABs <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="abs.html">ABs 1</a>
+      <a href="abs1.html">ABs 2</a>
+    </div>
+  </div>
+  <div class="subnav">
+    <button class="subnavbtn">Burn Fat <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="bfat.html">Part 1</a>
+      <a href="bfat1.html">Part 2</a>
+      <a href="bfat2.html">Part 3</a>
+    </div>
+  </div> 
+  <a href="cardio.html">Cardio</a>
+  <a href="kegel.html">Kegel</a>
+  </header>
+  <main>
+	<section id="home" align="center">
+      <img src="img/chest.jpg" border="0" width="65%"/>
+    </section>
+    <section id="warm-up">
+      <h2>Warm up Exercises</h2>
+      <p>This is the warm up page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/chest.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-chest.png"></iframe>
+	</section>
+    <section id="arms">
+      <h2>Arm Exercises</h2>
+      <p>This is the arms page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/chest1.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-chest1.png"></iframe>
+	</section>
+    <section id="chest">
+      <h2>Chest Exercises</h2>
+      <p>This is the chest page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/chest2.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-chest2.png"></iframe>
+	</section>
+    <section id="abs">
+      <h2>Abs Exercises</h2>
+      <p>This is the abs page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/chest3.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-chest3.png"></iframe>
+	</section>
+    <section id="legs">
+      <h2>Legs Exercises</h2>
+      <p>This is the legs page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/chest4.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-chest4.png"></iframe>
+	</section>
+    <section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/chest5.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-chest5.png"></iframe>
+	</section>
+	<section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/chest6.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-chest6.png"></iframe>
+	 </section>
+	 <section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/chestwithdumbbells.MP4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-chestwithdumbbells.png"></iframe>
+	 </section>
+	 <section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/saggyChest.MP4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-saggyChest.png"></iframe>
+	 </section>
+	 <section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/saggy-chest.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-saggy-chest.png"></iframe>
+	 </section>
+	 <section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Chest/shoulders.MP4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Chest/thumb-shoulders.png"></iframe>
+	 </section>
+	    <div class="scroll-to-top">
+    <button onclick="window.scrollTo(0, 0)">Scroll to Top</button>
+  </div>
+<div class="pagination">
+        <a href="#">«</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">»</a>
+    </div>
+
+  </main>
+  <footer>
+    <p>&copy; 2024 MyHome Workout App Made by REDi</p>
+  </footer>
+  <!-- <script src="js/vid.js"></script> -->
+</body>
+</html>
