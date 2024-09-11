@@ -1,42 +1,18 @@
-/* Global Styles */
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* styles.css */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9; /* light gray background */
 }
-
-/* Header Styles */
 
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: #333; /* dark gray background */
+  color: #fff; /* white text */
   padding: 1em;
   text-align: center;
-}
-
-header h1 {
-  /* font-size: 24px; */
-  font-size: 2rem;
-  margin-bottom: 0.5em;
-}
-
-/* Navigation Styles */
-
-nav {
-  background-color: #444;
-  padding: 1em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
 }
 
 nav ul {
@@ -44,62 +20,39 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
+  justify-content: space-between;
 }
 
 nav li {
   margin-right: 20px;
-  position: relative;
-}
-
-nav li:last-child {
-  margin-right: 0; /* No margin for the last item */
 }
 
 nav a {
-  background-color: #333;
-  color: #fff;
-  padding: 15px 25px;
-  text-align: center;
+  color: #fff; /* white text */
   text-decoration: none;
-  display: inline-block;
-  transition: color 0.2s ease;
 }
 
 nav a:hover {
-  color: #ccc;
+  color: #ccc; /* light gray text on hover */
 }
 
-/* Apply styles to the active navigation link */
-.active {
-    background-color: SlateBlue; /* Change to your desired color */
-    color: #fff;
+.dropdown {
+  position: relative;
 }
 
-/* Subnavigation Menu Styles */
-nav ul ul {
+.dropdown .subnav-content {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: #444;
-  padding: 0;
+  background-color: #333; /* dark gray background */
+  padding: 10px;
+  border: 1px solid #333;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
 }
 
-nav ul li:hover > ul {
-  display: flex;
-  flex-direction: column;
+.dropdown:hover .subnav-content {
+  display: block;
 }
-
-nav ul ul li {
-  margin: 0;
-}
-
-nav ul ul a {
-  padding: 10px 25px;
-}
-
-/* Main Content Styles */
 
 main {
   display: flex;
@@ -109,95 +62,65 @@ main {
 }
 
 section {
-  background-color: #fff;
+  background-color: #fff; /* white background */
   padding: 2em;
   margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
 }
 
 h2 {
-  font-size: 18px;
+  font-weight: bold;
   margin-top: 0;
 }
 
-p {
+iframe {
+  width: 100%;
+  height: 240px;
+  border: none;
   margin-bottom: 20px;
 }
 
-/* Footer Styles */
-
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 1em;
-  text-align: center;
-  clear: both;
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 }
 
-footer p {
-  margin-bottom: 0;
+.pagination a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333; /* dark gray text */
 }
 
-/* Apply styles to the Scroll to Top button */
+.pagination a:hover {
+  color: #666; /* dark gray text on hover */
+}
+
+.pagination a.active {
+  font-weight: bold;
+  color: #333; /* dark gray text */
+}
 
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: orange;
-  color: #fff;
-  padding: 10px 20px;
+  background-color: #333; /* dark gray background */
+  color: #fff; /* white text */
+  padding: 10px;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
-  display: inline-block;
-  transition: background-color 0.2s ease;
-  text-align: center;
-  text-decoration: none;
-}
-
-.scroll-to-top button {
-  border: none;
-  background-color: transparent;
-  padding: 0;
 }
 
 .scroll-to-top:hover {
-  color: #fff; /* Set the hover color to match the default text color */
-} 
-
-/* Media Queries */
-
-@media only screen and (max-width: 768px) {
-  /* Styles for smaller screens */
-  nav {
-    flex-direction: column;
-  }
-  nav ul {
-    flex-direction: column;
-  }
-  nav li {
-    margin-right: 0;
-  }
-  main {
-    padding: 1em;
-  }
-  section {
-    margin-bottom: 10px;
-  }
+  background-color: #444; /* darker gray background on hover */
 }
 
-@media only screen and (max-width: 480px) {
-  /* Styles for even smaller screens */
-  header {
-    font-size: 18px;
-  }
-  nav {
-    padding: 0.5em;
-  }
-  main {
-    padding: 0.5em;
-  }
-  section {
-    padding: 1em;
-  }
+footer {
+  background-color: #333; /* dark gray background */
+  color: #fff; /* white text */
+  padding: 1em;
+  text-align: center;
+  clear: both;
 }
