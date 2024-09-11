@@ -43,6 +43,13 @@
         }
     });
 </script>
+<script>
+const video = document.getElementById('video');
+const player = new Plyr(video, {
+  // Add your customization options here
+  // For example, you can enable or disable features like controls, fullscreen, or captions
+});
+</script>
 </head>
 <body>
   <header>
@@ -77,6 +84,13 @@
     <section id="legs">
       <h2>Legs Exercises</h2>
       <p>This is the warm up page.</p>
+	  <video id="video" playsinline controls webkit-playsinline>
+
+  <source src="https://ok.ru/video/7458882390692" type="video/mp4">
+
+  <!-- Add more sources for different formats, if needed -->
+
+</video>
 	  <iframe width="320" height="240" src="Vid/Legs/legs.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Legs/thumb-legs.png"></iframe>
 	</section>
     <section id="legs">
