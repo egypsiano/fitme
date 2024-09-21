@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>YouTube Video Embed</title>
+  <script src="https://cdn.jsdelivr.net/npm/youtube.js@1.0.0/dist/youtube.min.js"></script>
 </head>
 <body>
   <h1>YouTube Video Embed</h1>
@@ -9,5 +10,24 @@
     <source src="https://youtu.be/jPModJtigCk?si=HRUVV9Ilv-YpO0On" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+  <br />
+  <h1>YouTube Shorts Video Embed JS</h1>
+
+  <div id="player"></div>
+
+  <script>
+
+    var player = YouTube.player('player', {
+
+      videoId: '_jPU47QAPc0',
+      width: 560,
+      height: 315,
+      autoplay: true,
+      loop: true,
+      controls: false
+
+    });
+
+  </script>
 </body>
 </html>
