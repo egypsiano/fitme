@@ -1,25 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>YouTube Video Embed</title>
-  <script src="https://cdn.jsdelivr.net/npm/youtube.js@1.0.0/dist/youtube.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .video-item {
+            margin: 10px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .pagination a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .pagination a.active {
+            font-weight: bold;
+        }
+    </style>
+
+  <title>FitMe Workout App by REDi - Abs</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/rot-logo.css">
+  <script>
+    // Get the current URL path
+    const currentPath = window.location.pathname;
+
+    // Find the corresponding link in the navigation and add the "active" class
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
+</script>
 </head>
 <body>
-  <h1>YouTube Video Embed</h1>
-  <video width="560" height="315" controls>
-    <source src="https://youtu.be/jPModJtigCk?si=HRUVV9Ilv-YpO0On" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <br />
-  <h1>YouTube Shorts Video Embed JS</h1>
+  <header>
+    <div class="logo-container">
 
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/_jPU47QAPc0?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
+    <img src="logo.png" alt="Logo" class="logo">
 
-  <br />
-  <h1>YT</h1>
+  </div>
+   <div class="navbar">
+  <a href="index.html">Home</a>
+  <div class="subnav">
+    <button class="subnavbtn">ABs <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="abs.html" class="active">ABs 1</a>
+      <a href="abs1.html">ABs 2</a>
+    </div>
+  </div>
+  <a href="arms.html">Arms</a>
+  <a href="back.html">Back</a>
+  <div class="subnav">
+    <button class="subnavbtn">Burn Fat <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="bfat.html">Part 1</a>
+      <a href="bfat1.html">Part 2</a>
+      <a href="bfat2.html">Part 3</a>
+    </div>
+  </div>
+  <a href="chest.html">Chest</a>
+  <a href="cardio.html">Cardio</a>
+  <a href="fitness.html">Fitness</a>  
+  <a href="glutes.html">Glutes</a>
+  <a href="gym.html">Gym</a>
+  <a href="legs.html">Legs</a>
+  <a href="kegel.html">Kegel</a>
+  <a href="warm-up.html">Warm Up</a>
+  </header>
+  <main>
+	<section id="home" align="center">
+      <img src="img/abs.jpg" align="center" border="0" width="65%" />
+    </section>
+<section id="warm-up">
+      <h2>Warm up Exercises</h2>
+      <p>This is the warm up page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+	   </section>
+    <section id="arms">
+      <h2>Arm Exercises</h2>
+      <p>This is the arms page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core1.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+	  </section>
+    <section id="chest">
+      <h2>Chest Exercises</h2>
+      <p>This is the chest page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core2.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+	  </section>
+    <section id="abs">
+      <h2>Abs Exercises</h2>
+      <p>This is the abs page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core3.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+	</section>
+    <section id="legs5">
+      <h2>Legs Exercises</h2>
+      <p>This is the legs page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core4.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+    </section>
+    <section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core5.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+    </section>
+	<section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core6.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+    </section>
+	<section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core7.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+    </section>
+	<section id="lose-weight">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core8.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+    </section>
+	<section id="lose-weight10">
+      <h2>Lose Weight Tips</h2>
+      <p>This is the lose weight page.</p>
+	  <iframe width="320" height="240" src="Vid/Core/core9.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Kegel/thumb-kegel.png"></iframe>
+    </section>
+	    <div class="scroll-to-top">
+    <button onclick="window.scrollTo(0, 0)">Scroll to Top</button>
+  </div>
+<div class="pagination">
+        <a href="#">«</a>
+        <a href="abs.html" class="active">1</a>
+        <a href="abs1.html">2</a>
+        <!-- <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a> -->
+        <a href="#">»</a>
+    </div>
 
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/jPModJtigCk?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
-
- 
+  </main>
+  <footer>
+     <p>&copy; 2024 FitMe App Made by REDi</p>
+  </footer>
+<!-- <script src="js/vid.js"></script> -->
 </body>
 </html>
