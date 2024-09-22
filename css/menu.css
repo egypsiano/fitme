@@ -3,6 +3,7 @@
 .navbar {
   overflow: hidden;
   background-color: #333;
+  text-align: center;
 }
 
 /* Navigation links */
