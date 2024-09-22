@@ -21,13 +21,14 @@ nav {
 }
 
 .rotated-logo {
-  transform: rotate(90deg);
+  transform: rotate(45deg);
   transform-origin: center;
   width: 50px; /* adjust the width to your liking */
   height: 50px; /* adjust the height to your liking */
   background-color: #333; /* adjust the background color to your liking */
   padding: 10px; /* adjust the padding to your liking */
-  border: 1px solid #fff; /* adjust the border to your liking */
+  border: 0px;
+  /*border: 1px solid #fff;  adjust the border to your liking */
 }
 
 .logo {
