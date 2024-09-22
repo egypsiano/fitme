@@ -1,3 +1,4 @@
+<!-- index.html -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,11 +27,10 @@
             font-weight: bold;
         }
     </style>
-
-  <title>FitMe Workout App by REDi - Warm Up</title>
+  <title>FitMe Workout App by REDi - Gym</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/menu.css">
-  <link rel="stylesheet" href="css/rot-logo.css">
+  <link rel="stylesheet" href="css/rot-logo.css">  
   <script>
     // Get the current URL path
     const currentPath = window.location.pathname;
@@ -50,7 +50,7 @@
       <a href="index.html"><img src="img/logo.png" border="0" alt="Logo" class="logo"></a>
     </div>
 	<br />
-    <div class="navbar" align="center">
+    <div class="navbar">
   <a href="index.html">Home</a>
   <div class="subnav">
     <button class="subnavbtn">ABs <i class="fa fa-caret-down"></i></button>
@@ -73,25 +73,51 @@
   <a href="chest.html">Chest</a>
   <a href="fitness.html">Fitness</a>  
   <a href="glutes.html">Glutes</a>
-  <a href="gym.html">Gym</a>
+  <a href="gym.html" class="active">Gym</a>
   <a href="kegel.html">Kegel</a>
   <a href="legs.html">Legs</a>
-  <a href="warm-up.html" class="active">Warm Up</a>
+  <a href="warm-up.html">Warm Up</a>
   </header>
   <main>
 	<section id="home" align="center">
-      <img src="img/warm-ups.jpg" border="0" width="65%"/>
+      <img src="img/arms.jpg" align="center" border="0" width="65%"/>
     </section>
+<section id="warm-up">
+      <h2>Gym Exercises</h2>
+      <p>Arm Workout.</p>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/bNZYh3EJ0oo?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
+
+</section>
+
     <section id="warm-up">
-      <h2>Warm up Exercises</h2>
-      <p>Streaching.</p>
-	  <iframe width="320" height="240" src="Vid/Warmup/streach.mp4?autoplay=0" frameborder="0" allowfullscreen poster="Vid/Warmup/thumb-streach.png"></iframe>
-	</section>
-    
-  <div class="scroll-to-top">
+      <h2>Arms Exercises</h2>
+      <p>This is the warm up page.</p>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/m2IYGxgOhRg?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
+    </section>
+    <section id="arms">
+      <h2>Arm Exercises</h2>
+      <p>This is the arms page.</p>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/qhEMegCiwS4?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
+	      </section>
+    <section id="abs">
+      <h2>Abs Exercises</h2>
+      <p>This is the abs page.</p>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/720crZVuT6c?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
+	  </section>
+    <section id="legs">
+      <h2>Legs Exercises</h2>
+      <p>This is the legs page.</p>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/Fy6J9C-6AL4?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
+	  </section>
+	<section id="legs">
+      <h2>Legs Exercises</h2>
+      <p>This is the legs page.</p>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/PKt2rk3GNb4?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
+	  </section>  
+    <div class="scroll-to-top">
     <button onclick="window.scrollTo(0, 0)">Scroll to Top</button>
   </div>
-<div class="pagination">
+    <div class="pagination">
         <a href="#">«</a>
         <a href="#" class="active">1</a>
         <a href="#">2</a>
@@ -100,11 +126,10 @@
         <a href="#">5</a>
         <a href="#">»</a>
     </div>
-
   </main>
   <footer>
     <p>&copy; 2024 FitMe App Made by REDi</p>
   </footer>
-  <!-- <script src="js/vid.js"></script> -->
+<!-- <script src="js/vid.js"></script> -->
 </body>
 </html>
