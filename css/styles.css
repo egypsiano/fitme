@@ -1,5 +1,18 @@
 /* Global Styles */
+/* Desktop styles */
+@media (min-width: 768px) {
+  /* styles for desktop devices */
+}
 
+/* Tablet styles */
+@media (min-width: 481px) and (max-width: 767px) {
+  /* styles for tablet devices */
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  /* styles for mobile devices */
+}
 * {
   box-sizing: border-box;
   margin: 0;
