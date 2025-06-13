@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13-alpine
+    container_name: fitme_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-fitmeuser}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-fitmepass}
+      - POSTGRES_DB=${POSTGRES_DB:-fitmedb}
+    ports:
+      - "5432:5432" # Expose only if needed externally, otherwise remove for security
+    restart: unless-stopped
+
+  web:
+    build: .
+    container_name: fitme_web
+    command: gunicorn --bind 0.0.0.0:8000 fitme_project.wsgi:application
+    volumes:
+      - .:/app # Mounts current directory (project root) to /app in container
+      # Volume for media files, to be mounted from LXC's /mnt/workout equivalent
+      - ${MEDIA_FILES_MOUNT_PATH_ON_HOST}:${MEDIA_ROOT_IN_CONTAINER:-/app/mediafiles}
+    ports:
+      - "${DJANGO_PORT:-8000}:8000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG:-False}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost 127.0.0.1 [::1]}
+      - DATABASE_URL=${DATABASE_URL:-postgres://fitmeuser:fitmepass@db:5432/fitmedb}
+      # Media root inside container, matches Dockerfile staticfiles and settings.py MEDIA_ROOT
+      - MEDIA_ROOT=${MEDIA_ROOT_IN_CONTAINER:-/app/mediafiles}
+      - DJANGO_SETTINGS_MODULE=fitme_project.settings
+      # Add other environment variables as needed (email, etc.)
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

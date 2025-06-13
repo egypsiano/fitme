@@ -1,20 +1,250 @@
-/* Basic styles for FitMe */
-body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-header { background-color: #333; color: #fff; padding: 1em 0; text-align: center; }
-header h1 { margin: 0; }
-nav a { color: #fff; margin: 0 10px; text-decoration: none; }
-main { padding: 20px; max-width: 800px; margin: 20px auto; background-color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-.messages { list-style: none; padding: 0; margin-bottom: 1em; }
-.messages li { padding: 0.5em; margin-bottom: 0.5em; border-radius: 4px; }
-.messages li.success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-.messages li.error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-.messages li.info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
-footer { text-align: center; padding: 1em 0; margin-top: 20px; font-size: 0.9em; color: #777; }
-form p { margin-bottom: 10px; }
-form label { display: block; margin-bottom: 5px; }
-form input[type='text'], form input[type='email'], form input[type='password'], form input[type='number'], form select, form textarea { width: calc(100% - 22px); padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
-form button { background-color: #5cb85c; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
-form button:hover { background-color: #4cae4c; }
-ul { padding-left: 20px; }
-a { color: #007bff; }
-a:hover { text-decoration: underline; }
+/* Basic Reset / Normalize (Conceptual - for a real project, use normalize.css or similar) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    line-height: 1.6;
+    background-color: #f8f9fa; /* Lighter background */
+    color: #343a40; /* Darker text for contrast */
+    padding-top: 70px; /* Space for fixed navbar */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #343a40; /* Dark navbar */
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: fixed; /* Fixed navbar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    display: inline-block; /* For spacing if nav is next to it */
+}
+header h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav {
+    display: flex; /* Use flexbox for nav items */
+    justify-content: center;
+    align-items: center;
+}
+
+nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    background-color: #495057; /* Slightly lighter on hover */
+}
+
+/* Mobile Navigation (Hamburger Menu) */
+.nav-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+main {
+    padding: 20px;
+    background-color: #fff; /* White content background */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    margin: 20px auto; /* Centered content area */
+    width: 90%;
+    max-width: 1000px; /* Max width for content */
+}
+
+/* Messages (Alerts) */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5em;
+}
+.messages li {
+    padding: 0.8em 1.2em;
+    margin-bottom: 0.8em;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+.messages li.success { background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; }
+.messages li.error   { background-color: #f8d7da; color: #842029; border-color: #f5c2c7; }
+.messages li.info    { background-color: #cff4fc; color: #055160; border-color: #b6effb; }
+.messages li.warning { background-color: #fff3cd; color: #664d03; border-color: #ffecb5; }
+
+
+/* Forms */
+form {
+    margin-bottom: 20px;
+}
+form p { /* Each form field wrapped in <p> by {{ form.as_p }} */
+    margin-bottom: 15px;
+}
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495057;
+}
+form input[type='text'],
+form input[type='email'],
+form input[type='password'],
+form input[type='number'],
+form input[type='url'],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da; /* Lighter border */
+    border-radius: 4px;
+    font-size: 1em;
+}
+form input[type='checkbox'], form input[type='radio'] {
+    margin-right: 5px;
+}
+form button, .btn {
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: none; /* For .btn used on <a> tags */
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+form button:hover, .btn:hover {
+    background-color: #0056b3; /* Darker blue */
+}
+.btn-danger { background-color: #dc3545; }
+.btn-danger:hover { background-color: #c82333; }
+.btn-success { background-color: #28a745; }
+.btn-success:hover { background-color: #218838; }
+.btn-secondary { background-color: #6c757d; }
+.btn-secondary:hover { background-color: #5a6268; }
+
+
+/* Links */
+a { color: #007bff; text-decoration: none; }
+a:hover { color: #0056b3; text-decoration: underline; }
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2em 0;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #6c757d; /* Muted color */
+    border-top: 1px solid #e9ecef;
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+
+/* Responsive Images and Videos/IFrames */
+img, iframe, video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px; /* Soften image corners */
+}
+
+/* Dashboard specific styles */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 20px;
+}
+.dashboard-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+.dashboard-section h3 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Lists (e.g., exercise list, recipe list) */
+ul { padding-left: 20px; } /* Keep default list styling for now */
+.item-list li {
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.item-list li h4 a { font-weight: bold; }
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    header h1 { font-size: 1.5em; }
+    nav {
+        flex-direction: column; /* Stack nav links */
+        position: absolute;
+        top: 60px; /* Height of header */
+        left: 0;
+        width: 100%;
+        background-color: #343a40;
+        display: none; /* Hidden by default on mobile */
+        padding-bottom: 10px;
+    }
+    nav.active { display: flex; } /* Shown when .active class is added by JS */
+    nav a {
+        display: block; /* Make links take full width */
+        width: 90%;
+        margin: 5px auto;
+        text-align: center;
+        padding: 10px;
+    }
+    .nav-toggle { display: block; position: absolute; right: 15px; top: 10px; }
+    body { padding-top: 60px; } /* Adjust for smaller fixed navbar */
+
+    main { width: 95%; margin: 10px auto; }
+    .dashboard-grid { grid-template-columns: 1fr; } /* Ensure single column on mobile */
+}
+
+@media (min-width: 769px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* More robust grid for desktop */
+    }
+}

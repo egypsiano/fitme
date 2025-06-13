@@ -1,0 +1,125 @@
+{% extends 'users/base_users.html' %} {# Or your project's base template #}
+{% load static %}
+
+{% block title %}My Dashboard - FitMe{% endblock %}
+
+{% block content %}
+    <h2>My Dashboard</h2>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-section profile-summary">
+            <h3>Profile Summary</h3>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Age:</strong> {{ user.age|default:'Not set' }}</p>
+            <p><strong>Sex:</strong> {{ user.get_sex_display|default:'Not set' }}</p>
+            <p><strong>Current Weight:</strong> {{ user.weight_kg|default:'Not set' }} kg</p>
+            <p><strong>Height:</strong> {{ user.height_cm|default:'Not set' }} cm</p>
+            <p><strong>Activity Level:</strong> {{ user.get_activity_level_display|default:'Not set' }}</p>
+            <p><strong>Diseases:</strong>
+                {% for disease in user.diseases.all %}
+                    {{ disease.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    None specified
+                {% endfor %}
+            </p>
+            <p><a href="{% url 'users:profile_edit' %}">Edit Profile</a></p>
+        </div>
+
+        <div class="dashboard-section health-metrics">
+            <h3>Latest Health Metrics</h3>
+            {% if latest_health_data %}
+                <p><em>(As of: {{ latest_health_data.date }})</em></p>
+                <p><strong>Weight at calculation:</strong> {{ latest_health_data.weight_kg|default:'N/A' }} kg</p>
+                <p><strong>Calculated BMI:</strong> {{ latest_health_data.bmi|default:'N/A' }}</p>
+                <p><strong>Calculated BMR:</strong> {{ latest_health_data.bmr|default:'N/A' }} calories/day</p>
+                <p><strong>Est. Daily Calorie Needs:</strong> {{ latest_health_data.daily_calorie_target|default:'N/A' }} calories/day</p>
+            {% else %}
+                <p>No health metrics calculated yet. Update your profile to see them.</p>
+            {% endif %}
+        </div>
+
+        <div class="dashboard-section weight-chart">
+            <h3>Weight Progress</h3>
+            {% if historical_health_data_count > 1 %}
+                <canvas id="weightChart"></canvas>
+            {% else %}
+                <p>Not enough data to display a weight chart. Update your profile regularly to track progress.</p>
+                <p>(You need at least two health data entries with weight recorded.)</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <style>
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .dashboard-section {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .dashboard-section h3 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    {# Include Chart.js from CDN #}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const historicalDataCount = {{ historical_health_data_count }};
+            if (historicalDataCount > 1) {
+                const ctx = document.getElementById('weightChart').getContext('2d');
+                const weightChart = new Chart(ctx, {
+                    type: 'line', // Type of chart
+                    data: {
+                        labels: {{ chart_labels|safe }}, // Dates from view context
+                        datasets: [{
+                            label: 'Weight (kg)',
+                            data: {{ chart_weight_data|safe }}, // Weight data from view context
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1,
+                            fill: false,
+                            spanGaps: true // Connect lines even if there are null data points
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true, // Adjust as needed
+                        scales: {
+                            y: {
+                                beginAtZero: false, // Adjust based on typical weight values
+                                title: {
+                                    display: true,
+                                    text: 'Weight (kg)'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Date'
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}

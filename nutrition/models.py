@@ -26,6 +26,7 @@ class MealRecipe(models.Model):
     # video_url for cooking instructions could be added later if needed.
 
     # status = models.CharField(max_length=10, choices=[('PENDING', 'Pending'), ('APPROVED', 'Approved')], default='APPROVED') # If moderation is needed later for user submissions
+    video_url = models.URLField(blank=True, null=True, help_text='Optional: Link to a recipe video (e.g., YouTube).')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

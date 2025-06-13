@@ -20,10 +20,11 @@ from . import views as project_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('users.urls')), # users.urls first to override login/logout if needed
     path('accounts/', include('django.contrib.auth.urls')), # for login, logout, password_reset etc.
-    path('accounts/', include('users.urls')),
     path('workouts/', include('workouts.urls')),
     path('nutrition/', include('nutrition.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('', project_views.home_view, name='home'),
 ]
 

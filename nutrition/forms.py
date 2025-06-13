@@ -6,7 +6,7 @@ class MealRecipeForm(forms.ModelForm):
         model = MealRecipe
         fields = ['name', 'description', 'ingredients', 'instructions',
                   'prep_time_minutes', 'cook_time_minutes', 'servings',
-                  'category', 'image']
+                  'category', 'image', 'video_url']
         widgets = {
             'ingredients': forms.Textarea(attrs={'rows': 5}),
             'instructions': forms.Textarea(attrs={'rows': 8}),

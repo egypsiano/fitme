@@ -18,10 +18,14 @@ class TagAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)} # If not auto-generating in save method
 
 admin.site.register(WorkoutCategory)
-admin.site.register(Equipment)
+# admin.site.register(Equipment) # Replaced by EquipmentAdmin
 # admin.site.register(MuscleGroup) # Replaced by MuscleGroupAdmin
 admin.site.register(Exercise, ExerciseAdmin)
 admin.site.register(Tag, TagAdmin)
+
+class EquipmentAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
+admin.site.register(Equipment, EquipmentAdmin)
 
 class MuscleGroupAdmin(admin.ModelAdmin):
     list_display = ('name', 'show_on_map')

@@ -1,0 +1,37 @@
+Instructions for Admin to Manage Warm-up, Cool-down, and Kegel Exercises:
+
+1.  **Access Django Admin Panel:**
+    *   Navigate to your website's admin URL (e.g., yourdomain.com/admin/).
+    *   Log in with your admin credentials (username 'admin', password 'adminpass' if using the default created earlier).
+
+2.  **Verify/Manage Categories:**
+    *   In the admin panel, find the 'WORKOUTS' section.
+    *   Click on 'Workout Categories'.
+    *   You should see 'Warm-up Exercises', 'Cool-down Exercises', and 'Kegel Exercises' listed. You can click on them to edit their descriptions if needed.
+
+3.  **Add New Exercises to These Categories:**
+    *   In the 'WORKOUTS' section, click on 'Exercises'.
+    *   Click the 'ADD EXERCISE +' button.
+    *   Fill in the exercise details:
+        *   **Name:** (e.g., 'Arm Circles', 'Quad Stretch', 'Basic Kegel Squeeze')
+        *   **Description:** Detailed explanation of the exercise.
+        *   **Instructions:** Step-by-step guide on how to perform it.
+        *   **Representative Image:** (Optional) Upload an image.
+        *   **Video URL:** (Optional) Link to a demonstration video.
+        *   **Difficulty:** Choose appropriately.
+        *   **Is home friendly:** Check if applicable.
+        *   **Body focus:** Select if relevant (e.g., 'Core' for some Kegel variations, or 'Full Body' for general warm-ups).
+        *   **Workout category:** THIS IS KEY. Select 'Warm-up Exercises', 'Cool-down Exercises', or 'Kegel Exercises' from the dropdown.
+        *   **Primary muscle group:** (Optional) Select if the exercise targets a specific major muscle (e.g., for a targeted warm-up stretch).
+        *   **Equipment:** Select if any equipment is needed (usually 'None' for many of these).
+        *   **Tags:** (Optional) Add relevant tags like 'Stretching', 'Pelvic Floor'.
+        *   **Contraindicated for diseases:** (Important) If an exercise should be avoided by people with certain conditions, select those diseases.
+    *   Click 'Save'.
+
+4.  **Verify on the Website:**
+    *   Go to the main website.
+    *   Navigate to the 'Workouts' section.
+    *   You should see the new categories listed. Clicking on them should display the exercises you added.
+    *   The exercises should also appear in the 'All Exercises' list and be filterable.
+
+By following these steps, the admin can populate the website with specific warm-up, cool-down, and Kegel exercises.

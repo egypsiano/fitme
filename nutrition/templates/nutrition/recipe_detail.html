@@ -26,6 +26,21 @@
     <h4>Instructions:</h4>
     <p>{{ recipe.instructions|linebreaks }}</p>
 
+    {% if recipe.video_url %}
+    <h4>Recipe Video:</h4>
+    <p><a href="{{ recipe.video_url }}" target="_blank">Watch Video</a></p>
+    {# Basic embed for YouTube for demonstration #}
+    {% if 'youtube.com/watch?v=' in recipe.video_url %}
+        {% with video_id=recipe.video_url|slice:'32:' %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="Recipe Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endwith %}
+    {% elif 'youtu.be/' in recipe.video_url %}
+        {% with video_id=recipe.video_url|slice:'17:' %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="Recipe Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endwith %}
+    {% endif %}
+{% endif %}
+
     {% if user.is_authenticated and user == recipe.user %}
         <hr>
         <a href="{% url 'nutrition:edit_recipe' recipe.id %}" class='btn btn-primary'>Edit Recipe</a>
