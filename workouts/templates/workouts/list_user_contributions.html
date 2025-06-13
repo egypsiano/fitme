@@ -1,0 +1,33 @@
+{% extends 'workouts/base_workouts.html' %}
+{% block workout_title %}My Exercise Contributions{% endblock %}
+{% block workout_page_title %}My Exercise Contributions{% endblock %}
+
+{% block workout_content %}
+    {% if contributions %}
+        <ul>
+            {% for item in contributions %}
+                <li>
+                    <h4><a href="{% url 'workouts:exercise_detail' item.exercise.id %}">{{ item.exercise.name }}</a> ({{ item.get_status_display }})</h4>
+                    <p>Submitted on: {{ item.created_at|date:"Y-m-d H:i" }}</p>
+                    {% if item.uploaded_image %}
+                        <p>Image: <img src="{{ item.uploaded_image.url }}" alt="User contribution for {{ item.exercise.name }}" style="max-width: 150px; max-height:150px;"></p>
+                    {% endif %}
+                    {% if item.uploaded_video %}
+                        <p>Video: <a href="{{ item.uploaded_video.url }}" target="_blank">View Video</a> (Note: May require appropriate player)</p>
+                    {% endif %}
+                    {% if item.external_video_url %}
+                        <p>External Video Link: <a href="{{ item.external_video_url }}" target="_blank">{{ item.external_video_url }}</a></p>
+                    {% endif %}
+                    {% if item.notes %}
+                        <p>Notes: {{ item.notes|linebreaks }}</p>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <p>You have not made any contributions yet.</p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not made any contributions yet.</p>
+    {% endif %}
+    <p><a href="{% url 'workouts:category_list' %}">Browse exercises to contribute</a></p>
+{% endblock %}

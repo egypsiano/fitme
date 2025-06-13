@@ -1,0 +1,93 @@
+{% extends 'workouts/base_workouts.html' %}
+{% load static %} {# Ensure static is loaded if using SVG files from static later #}
+
+{% block workout_title %}Interactive Muscle Map{% endblock %}
+{% block workout_page_title %}Interactive Muscle Map{% endblock %}
+
+{% block workout_content %}
+    <p>Select a muscle group below to see related exercises. (SVG/Image map integration pending)</p>
+
+    <div class="muscle-map-container">
+        <div class="muscle-map-column">
+            <h4>Front Muscles (Placeholder)</h4>
+            {% if svg_front_url %}
+                <object data="{{ svg_front_url }}" type="image/svg+xml" id="svg-muscle-front" style="width: 100%; max-width: 400px; height: auto;">
+                    Your browser does not support SVG.
+                </object>
+            {% else %}
+                <p><em>Front muscle SVG placeholder. Imagine a clickable front view of muscles here.</em></p>
+            {% endif %}
+        </div>
+        <div class="muscle-map-column">
+            <h4>Back Muscles (Placeholder)</h4>
+            {% if svg_back_url %}
+                <object data="{{ svg_back_url }}" type="image/svg+xml" id="svg-muscle-back" style="width: 100%; max-width: 400px; height: auto;">
+                    Your browser does not support SVG.
+                </object>
+            {% else %}
+                <p><em>Back muscle SVG placeholder. Imagine a clickable back view of muscles here.</em></p>
+            {% endif %}
+        </div>
+    </div>
+
+    <h4>Select Muscle Group:</h4>
+    <ul id="muscle-group-list">
+        {% for muscle in major_muscle_groups %}
+            <li>
+                <a href="#" data-muscle-id="{{ muscle.id }}" data-muscle-name="{{ muscle.name }}" class="muscle-link">
+                    {{ muscle.name }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No major muscle groups defined to show on map. Please configure in admin.</li>
+        {% endfor %}
+    </ul>
+
+    <style>
+        .muscle-map-container { display: flex; justify-content: space-around; margin-bottom: 20px; }
+        .muscle-map-column { flex: 1; padding: 10px; text-align: center; }
+        #muscle-group-list { list-style: none; padding: 0; }
+        #muscle-group-list li { margin: 5px 0; }
+        #muscle-group-list a { text-decoration: none; color: #007bff; padding: 5px; border: 1px solid transparent; display: inline-block; }
+        #muscle-group-list a:hover { border-color: #007bff; background-color: #f0f8ff; }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const muscleLinks = document.querySelectorAll('.muscle-link');
+            const filterBaseUrl = "{{ filter_url_base }}"; // From view context
+
+            muscleLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const muscleId = this.dataset.muscleId;
+                    // Construct URL for exercise list, filtering by this primary_muscle_group
+                    // Example: /workouts/exercises/?primary_muscle_group=<muscle_id>
+                    const تمارينUrl = filterBaseUrl + '?primary_muscle_group=' + muscleId;
+                    window.location.href = تمارينUrl;
+                });
+            });
+
+            // Placeholder for future SVG interaction:
+            // If SVGs were present and had clickable elements with IDs matching muscle.id or muscle.name:
+            // const svgObject = document.getElementById('svg-muscle-front');
+            // if (svgObject) {
+            //     svgObject.addEventListener('load', function() {
+            //         const svgDoc = svgObject.contentDocument;
+            //         if (svgDoc) {
+            //             majorMuscleGroups.forEach(muscle => { // Assuming majorMuscleGroups is passed as JSON
+            //                 const muscleElement = svgDoc.getElementById(muscle.svg_id || muscle.name.toLowerCase().replace(' ', '-'));
+            //                 if (muscleElement) {
+            //                     muscleElement.addEventListener('click', function() {
+            //                         const تمارينUrl = filterBaseUrl + '?primary_muscle_group=' + muscle.id;
+            //                         window.location.href = تمارينUrl;
+            //                     });
+            //                     // Add hover styles, etc.
+            //                 }
+            //             });
+            //         }
+            //     });
+            // }
+        });
+    </script>
+{% endblock %}

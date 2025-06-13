@@ -1,0 +1,35 @@
+{% extends 'nutrition/base_nutrition.html' %}
+{% block nutrition_title %}{{ recipe.name }}{% endblock %}
+{% block nutrition_page_title %}{{ recipe.name }}{% endblock %}
+{% block nutrition_content %}
+    {% if recipe.category %}
+        <p><a href="{% url 'nutrition:recipe_list_by_category' recipe.category.id %}">Back to {{ recipe.category.name }} recipes</a></p>
+    {% endif %}
+
+    {% if recipe.image %}
+        <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" style="max-width: 400px; margin-bottom: 15px;">
+    {% endif %}
+
+    <p><strong>Submitted by:</strong> {{ recipe.user.username }} on {{ recipe.created_at|date:"Y-m-d" }}</p>
+    {% if recipe.prep_time_minutes %}<p><strong>Prep Time:</strong> {{ recipe.prep_time_minutes }} minutes</p>{% endif %}
+    {% if recipe.cook_time_minutes %}<p><strong>Cook Time:</strong> {{ recipe.cook_time_minutes }} minutes</p>{% endif %}
+    {% if recipe.servings %}<p><strong>Servings:</strong> {{ recipe.servings }}</p>{% endif %}
+
+    {% if recipe.description %}
+        <h4>Description:</h4>
+        <p>{{ recipe.description|linebreaks }}</p>
+    {% endif %}
+
+    <h4>Ingredients:</h4>
+    <p>{{ recipe.ingredients|linebreaks }}</p>
+
+    <h4>Instructions:</h4>
+    <p>{{ recipe.instructions|linebreaks }}</p>
+
+    {% if user.is_authenticated and user == recipe.user %}
+        <hr>
+        <a href="{% url 'nutrition:edit_recipe' recipe.id %}" class='btn btn-primary'>Edit Recipe</a>
+        <a href="{% url 'nutrition:delete_recipe' recipe.id %}" class='btn btn-danger'>Delete Recipe</a>
+    {% endif %}
+    <p><a href="{% url 'nutrition:recipe_list' %}">Back to all recipes</a></p>
+{% endblock %}

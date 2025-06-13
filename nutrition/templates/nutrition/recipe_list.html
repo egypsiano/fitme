@@ -1,0 +1,37 @@
+{% extends 'nutrition/base_nutrition.html' %}
+{% block nutrition_title %}{{ list_title|default:'Meal Recipes' }}{% endblock %}
+{% block nutrition_page_title %}{{ list_title|default:'Meal Recipes' }}{% endblock %}
+{% block nutrition_content %}
+    {% if category %}
+        <p><a href="{% url 'nutrition:category_list' %}">Back to Categories</a></p>
+    {% endif %}
+
+    <div style='margin-bottom: 20px;'>
+        <form method='get' action="{% url 'nutrition:recipe_list' %}">
+            <label for='category_filter'>Filter by Category:</label>
+            <select name='category' id='category_filter' onchange='this.form.submit()'>
+                <option value=''>All Categories</option>
+                {% for cat in categories %}
+                <option value='{{ cat.id }}' {% if cat.id == selected_category %}selected{% endif %}>{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'nutrition:add_recipe' %}" class='btn btn-success'>Add New Recipe</a></p>
+    {% endif %}
+
+    {% for recipe in recipes %}
+        <div class='recipe-item' style='border:1px solid #eee; padding:10px; margin-bottom:10px;'>
+            <h3><a href="{% url 'nutrition:recipe_detail' recipe.id %}">{{ recipe.name }}</a></h3>
+            {% if recipe.image %}
+                <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" style="max-width: 150px; max-height: 150px; float: right;">
+            {% endif %}
+            <p>By: {{ recipe.user.username }} | Category: {{ recipe.category.name|default:'N/A' }}</p>
+            <p>{{ recipe.description|truncatewords:30 }}</p>
+        </div>
+    {% empty %}
+        <p>No recipes found.</p>
+    {% endfor %}
+{% endblock %}

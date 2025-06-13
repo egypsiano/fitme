@@ -1,0 +1,48 @@
+{% extends 'workouts/base_workouts.html' %}
+{% block workout_title %}{{ list_title }}{% endblock %}
+{% block workout_page_title %}{{ list_title }}{% endblock %}
+
+{% block workout_content %}
+    {% if category %}
+        <p><a href="{% url 'workouts:category_list' %}">Back to Categories</a></p>
+    {% endif %}
+
+    {% if filter_form %}
+        <form method="get" action="{% url 'workouts:exercise_list' %}"> {# Or current view's URL #}
+            <h4>Filter Exercises</h4>
+            {{ filter_form.as_p }}
+            <button type="submit">Filter</button>
+            <a href="{% url 'workouts:exercise_list' %}">Clear Filters</a> {# Link to view without GET params #}
+        </form>
+        <hr>
+    {% endif %}
+
+    {% if exercises %}
+        <ul>
+            {% for exercise in exercises %}
+                <li>
+                    <a href="{% url 'workouts:exercise_detail' exercise.id %}">{{ exercise.name }}</a>
+                    {% if exercise.representative_image %}
+                        <img src="{{ exercise.representative_image.url }}" alt="{{ exercise.name }}" style="max-width: 100px; max-height: 100px; float: right;">
+                    {% endif %}
+                    <p>Difficulty: {{ exercise.get_difficulty_display }}
+                       {% if exercise.is_home_friendly %} (Home Friendly) {% endif %}
+                       {% if exercise.body_focus %} (Focus: {{ exercise.get_body_focus_display }}) {% endif %}
+                    </p>
+                    {% if exercise.primary_muscle_group %}<p>Primary Muscle: {{ exercise.primary_muscle_group.name }}</p>{% endif %}
+                    {% if exercise.tags.all %}
+                        <p>Tags:
+                        {% for tag in exercise.tags.all %}
+                            {{ tag.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                        </p>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>No exercises found matching your criteria.</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+         <p>No exercises found matching your criteria.</p>
+    {% endif %}
+{% endblock %}

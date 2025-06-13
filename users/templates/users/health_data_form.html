@@ -1,0 +1,10 @@
+{% extends 'users/base_users.html' %}
+{% block title %}{{ view_title }} - FitMe{% endblock %}
+{% block content %}
+    <h2>{{ view_title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Health Data</button>
+    </form>
+{% endblock %}

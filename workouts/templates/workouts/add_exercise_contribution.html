@@ -1,0 +1,14 @@
+{% extends 'workouts/base_workouts.html' %}
+{% block workout_title %}Contribute to {{ exercise.name }}{% endblock %}
+{% block workout_page_title %}Contribute to: {{ exercise.name }}{% endblock %}
+
+{% block workout_content %}
+    <p>Upload your own image, video, or link an external video for the exercise: <strong>{{ exercise.name }}</strong>.</p>
+    <p>Your contribution will be submitted for review by administrators.</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Contribution</button>
+    </form>
+    <p><a href="{% url 'workouts:exercise_detail' exercise.id %}">Cancel and return to exercise</a></p>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'nutrition/base_nutrition.html' %}
+{% block nutrition_title %}{{ form_title }}{% endblock %}
+{% block nutrition_page_title %}{{ form_title }}{% endblock %}
+{% block nutrition_content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Recipe</button>
+    </form>
+    <p><a href="{% if object %}{% url 'nutrition:recipe_detail' object.id %}{% else %}{% url 'nutrition:recipe_list' %}{% endif %}">Cancel</a></p>
+{% endblock %}

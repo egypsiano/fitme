@@ -1,0 +1,13 @@
+{% extends 'nutrition/base_nutrition.html' %}
+{% block nutrition_title %}Recipe Categories{% endblock %}
+{% block nutrition_page_title %}Recipe Categories{% endblock %}
+{% block nutrition_content %}
+    <ul>
+        {% for category in categories %}
+            <li><a href="{% url 'nutrition:recipe_list_by_category' category.id %}">{{ category.name }}</a></li>
+        {% empty %}
+            <li>No nutrition categories available yet.</li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'nutrition:recipe_list' %}">View All Recipes</a></p>
+{% endblock %}

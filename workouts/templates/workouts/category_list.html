@@ -1,0 +1,18 @@
+{% extends 'workouts/base_workouts.html' %}
+{% block workout_title %}Workout Categories{% endblock %}
+{% block workout_page_title %}Workout Categories{% endblock %}
+
+{% block workout_content %}
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="{% url 'workouts:exercise_list_by_category' category.id %}">{{ category.name }}</a>
+                {% if category.description %}<p>{{ category.description }}</p>{% endif %}
+            </li>
+        {% empty %}
+            <li>No workout categories available yet.</li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'workouts:exercise_list' %}">View All Exercises</a></p>
+    <p><a href="{% url 'workouts:interactive_muscle_map' %}">View Interactive Muscle Map</a></p>
+{% endblock %}

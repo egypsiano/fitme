@@ -1,0 +1,78 @@
+{% extends 'workouts/base_workouts.html' %}
+{% block workout_title %}{{ exercise.name }}{% endblock %}
+{% block workout_page_title %}{{ exercise.name }}{% endblock %}
+
+{% block workout_content %}
+    {% if exercise.workout_category %}
+        <p><a href="{% url 'workouts:exercise_list_by_category' exercise.workout_category.id %}">Back to {{ exercise.workout_category.name }}</a></p>
+    {% endif %}
+
+    {% if is_contraindicated %}
+        <div style='border: 2px solid red; padding: 10px; margin-bottom: 10px; background-color: #fdd;'>
+            <strong>Warning:</strong> Based on your registered health conditions, this exercise may not be suitable for you. Please consult with a healthcare professional.
+        </div>
+    {% endif %}
+
+    {% if exercise.representative_image %}
+        <img src="{{ exercise.representative_image.url }}" alt="{{ exercise.name }}" style="max-width: 300px; margin-bottom: 15px;">
+    {% endif %}
+
+    <p><strong>Description:</strong> {{ exercise.description|linebreaks }}</p>
+    <p><strong>Difficulty:</strong> {{ exercise.get_difficulty_display }}</p>
+    <p><strong>Home Friendly:</strong> {% if exercise.is_home_friendly %}Yes{% else %}No{% endif %}</p>
+    <p><strong>Body Focus:</strong> {{ exercise.get_body_focus_display|default:'N/A' }}</p>
+
+    {% if exercise.primary_muscle_group %}
+        <p><strong>Primary Muscle Group:</strong> {{ exercise.primary_muscle_group.name }}</p>
+    {% endif %}
+
+    {% if exercise.secondary_muscle_groups.all %}
+        <p><strong>Secondary Muscle Groups:</strong>
+        {% for muscle in exercise.secondary_muscle_groups.all %}
+            {{ muscle.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        </p>
+    {% endif %}
+
+    {% if exercise.equipment.all %}
+        <p><strong>Equipment Needed:</strong>
+        {% for item in exercise.equipment.all %}
+            {{ item.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        </p>
+    {% else %}
+        <p><strong>Equipment Needed:</strong> Bodyweight</p> {# Explicitly state if no equipment #}
+    {% endif %}
+
+    {% if exercise.tags.all %}
+        <p><strong>Tags:</strong>
+        {% for tag in exercise.tags.all %}
+            {{ tag.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        </p>
+    {% endif %}
+
+    {% if exercise.instructions %}
+        <h3>Instructions:</h3>
+        <p>{{ exercise.instructions|linebreaks }}</p>
+    {% endif %}
+
+    {% if exercise.video_url %}
+        <p><strong>Video:</strong> <a href="{{ exercise.video_url }}" target="_blank">Watch Video</a></p>
+    {% endif %}
+
+    {% if exercise.contraindicated_for_diseases.all %}
+        <div style='border: 1px solid orange; padding: 5px; margin-top: 10px; font-size:0.9em;'>
+            <p><strong>Health Considerations:</strong> This exercise may not be suitable for individuals with the following conditions:
+            {% for disease in exercise.contraindicated_for_diseases.all %}
+                {{ disease.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            . Always consult a professional if unsure.</p>
+        </div>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <hr>
+        <p><a href="{% url 'workouts:add_exercise_contribution' exercise.id %}" class='btn btn-primary'>Add your own image/video for this exercise</a></p>
+    {% endif %}
+{% endblock %}

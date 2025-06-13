@@ -1,0 +1,7 @@
+{% extends 'users/base_users.html' %} {# Or project base #}
+{% block title %}{% block nutrition_title %}Nutrition{% endblock %} - FitMe{% endblock %}
+
+{% block content %}
+    <h2>{% block nutrition_page_title %}Nutrition & Recipes{% endblock %}</h2>
+    {% block nutrition_content %}{% endblock %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'users/base_users.html' %}
+{% block title %}Your Profile - FitMe{% endblock %}
+{% block content %}
+    <h2>{{ user.username }}'s Profile</h2>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>First Name:</strong> {{ user.first_name|default:'Not set' }}</p>
+    <p><strong>Last Name:</strong> {{ user.last_name|default:'Not set' }}</p>
+    <p><strong>Sex:</strong> {{ user.get_sex_display|default:'Not set' }}</p>
+    <p><strong>Age:</strong> {{ user.age|default:'Not set' }}</p>
+    <p><strong>Weight (kg):</strong> {{ user.weight_kg|default:'Not set' }}</p>
+    <p><strong>Height (cm):</strong> {{ user.height_cm|default:'Not set' }}</p>
+    <p><strong>Diseases:</strong>
+        {% for disease in user.diseases.all %}
+            {{ disease.name }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            None specified
+        {% endfor %}
+    </p>
+    <p><strong>Activity Level:</strong> {{ user.get_activity_level_display|default:'Not set' }}</p>
+    <a href="{% url 'users:profile_edit' %}">Edit Profile</a>
+
+    <h3>Latest Health Metrics</h3>
+    {% if latest_health_data %}
+        <p><em>(Calculated/Updated on: {{ latest_health_data.date }})</em></p>
+        <p><strong>Weight at calculation:</strong> {{ latest_health_data.weight_kg|default:'N/A' }} kg</p>
+        <p><strong>Calculated BMI:</strong> {{ latest_health_data.bmi|default:'N/A' }}</p>
+        <p><strong>Calculated BMR:</strong> {{ latest_health_data.bmr|default:'N/A' }} calories/day</p>
+        <p><strong>Estimated Daily Calorie Needs:</strong> {{ latest_health_data.daily_calorie_target|default:'N/A' }} calories/day</p>
+        <p><em>Ensure your age, sex, weight, height, and activity level in your profile are up-to-date for accurate calculations.</em></p>
+    {% else %}
+        <p>No health metrics calculated yet. Please <a href="{% url 'users:profile_edit' %}">update your profile</a> (ensure weight, height, age, sex, and activity level are set) to calculate them.</p>
+    {% endif %}
+
+    <h4>Historical Health Data (for graphs later)</h4>
+    {% if all_health_data %}
+        <ul>
+        {% for entry in all_health_data %}
+            <li>
+                {{ entry.date }}: W: {{ entry.weight_kg|default:'-' }}kg,
+                BMI: {{ entry.bmi|default:'-' }}, BMR: {{ entry.bmr|default:'-' }},
+                Cal. Target: {{ entry.daily_calorie_target|default:'-' }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No historical health data recorded.</p>
+    {% endif %}
+    <p><a href="{% url 'users:health_data_add' %}">Manually Add/Update Today's Health Data</a></p>
+{% endblock %}
